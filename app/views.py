@@ -5,8 +5,12 @@ from django.contrib import messages
 
 
 class IndexView(View):
-    def get(self, request, *args, **kwargs):
-        return render(request, "index.html")
+    page = "index.html" # Página de destino
+    def get(self, request):
+        context = {
+            "emprestimos": Emprestimo.objects.all(), # Recuperar todos os empréstimos
+        } # Dicionário de contexto
+        return render(request, self.page, context) # Renderizar a página de destino com o contexto
 
     def post(self, request):
         pass

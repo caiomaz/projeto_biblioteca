@@ -34,7 +34,8 @@ class Cidade(models.Model):
         on_delete=models.CASCADE, # Ação de exclusão em cascata
         verbose_name="Unidade Federal",
         help_text="Selecione a Unidade Federal",
-        default=1, # Valor padrão - UF com sigla 'XX'
+        blank=True,
+        null=True,
     )
 
     class Meta:
@@ -86,7 +87,8 @@ class Pessoa(models.Model):
     cidade = models.ForeignKey(
         Cidade, 
         on_delete=models.CASCADE, 
-        default=1,
+        blank=True,
+        null=True,
         verbose_name="Cidade",
         help_text="Selecione a cidade"
     )
@@ -179,21 +181,24 @@ class Livro(models.Model):
         on_delete=models.CASCADE,
         verbose_name="Gênero Literário",
         help_text="Selecione o gênero literário",
-        default=1
+        blank=True,
+        null=True,
     )
     autor = models.ForeignKey(
         Autor, 
         on_delete=models.CASCADE,
         verbose_name="Autor",
         help_text="Selecione o autor",
-        default=1,
+        blank=True,
+        null=True,
     )
     editora = models.ForeignKey(
         Editora, 
         on_delete=models.CASCADE,
         verbose_name="Editora",
         help_text="Selecione a editora",
-        default=1,
+        blank=True,
+        null=True,
     )
     preco = models.IntegerField(
         default=0,
@@ -231,14 +236,16 @@ class Emprestimo(models.Model):
         on_delete=models.CASCADE,
         verbose_name="Usuário",
         help_text="Selecione o usuário",
-        default=1   
+        blank=True,
+        null=True,  
     )
     livro = models.ForeignKey(
         Livro, 
         on_delete=models.CASCADE,
         verbose_name="Livro",
         help_text="Selecione o livro",
-        default=1
+        blank=True,
+        null=True,
     )
 
     class Meta:
