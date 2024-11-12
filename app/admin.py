@@ -22,7 +22,7 @@ class UFAdmin(admin.ModelAdmin):
     list_display = ("sigla",)
     search_fields = ("sigla",)
     ordering = ("sigla",)
-    inlines = [CidadeInline]
+    # inlines = [CidadeInline]
 
 
 # Definir as classes de administração
@@ -38,7 +38,7 @@ class GeneroAdmin(admin.ModelAdmin):
     list_filter = ("nome",)
     search_fields = ("nome",)
     ordering = ("nome",)
-    inlines = [LivroInline]
+    # inlines = [LivroInline]
 
 
 class AutorAdmin(admin.ModelAdmin):
@@ -46,7 +46,7 @@ class AutorAdmin(admin.ModelAdmin):
     list_filter = ("nome",)
     search_fields = ("nome",)
     ordering = ("nome",)
-    inlines = [LivroInline]
+    # inlines = [LivroInline]
 
 
 class EditoraAdmin(admin.ModelAdmin):
@@ -54,7 +54,7 @@ class EditoraAdmin(admin.ModelAdmin):
     list_filter = ("nome",)
     search_fields = ("nome",)
     ordering = ("nome",)
-    inlines = [LivroInline]
+    # inlines = [LivroInline]
 
 
 class UsuarioAdmin(admin.ModelAdmin):
@@ -69,7 +69,7 @@ class LivroAdmin(admin.ModelAdmin):
     list_filter = ("autor", "editora", "genero") # Campos para filtragem
     search_fields = ("autor", "editora", "genero") # Campos para busca
     ordering = ("autor", "editora", "genero") # Campos para ordenação
-    inlines = [EmprestimoInline] # Incluir empréstimos no formulário
+    # inlines = [EmprestimoInline] # Incluir empréstimos no formulário
 
 
 class EmprestimoAdmin(admin.ModelAdmin):
