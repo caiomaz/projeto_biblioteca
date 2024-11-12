@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: projeto_biblioteca
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:123456@db:5432/projeto_biblioteca
+
+volumes:
+  postgres_data:

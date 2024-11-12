@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-8l8o(-2su$6t%k424293i#x672q0$*^itfyi9r32$8j-igo7zf"
@@ -44,13 +45,7 @@ TEMPLATES = [
 ]
 WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "projeto_biblioteca",
-        "USER": "postgres",
-        "PASSWORD": "123456",
-        "HOST": "localhost",
-        "PORT": "5432",
+    "default": dj_database_url.config(default='postgres://postgres:123456@db:5432/projeto_biblioteca')
     }
 }
 AUTH_PASSWORD_VALIDATORS = [
