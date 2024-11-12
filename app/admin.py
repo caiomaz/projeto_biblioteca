@@ -11,3 +11,10 @@ class UFAdmin(admin.ModelAdmin):
 
 admin.site.register(UF, UFAdmin)
 admin.site.register(Cidade)
+
+admin.site.register(Genero)
+admin.site.register(Autor)
+admin.site.register(Editora)
+admin.site.register(Usuario)
+admin.site.register(Livro)
+admin.site.register(Emprestimo)
