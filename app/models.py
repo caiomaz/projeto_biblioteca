@@ -19,11 +19,6 @@ class UF(models.Model):
     def __str__(self):
         return self.sigla # Retorna a sigla da UF como string para representar o objeto
     
-    # Método que inicializa a classe criando uma UF com a sigla 'XX'
-    @classmethod
-    def criar_uf(cls) -> Any:
-        return cls.objects.create(sigla="XX")
-
 
 # Classe 'Cidade' para representar as cidades
 class Cidade(models.Model):
@@ -48,12 +43,6 @@ class Cidade(models.Model):
 
     def __str__(self):
         return self.nome
-    
-    # Método que inicializa a classe criando uma cidade com o nome 'Pintópolis'
-    @classmethod
-    def criar_cidade(cls) -> Any:
-        uf = UF.criar_uf()
-        return cls.objects.create(nome="Pintópolis", uf=uf)
 
 
 # Classe 'Genero' para representar os gêneros literários
@@ -159,22 +148,6 @@ class Autor(PessoaFisica):
         verbose_name = "Autor"
         verbose_name_plural = "Autores"
 
-    # Método que inicializa a classe criando um autor com o nome 'Leandrinho'
-    @classmethod
-    def criar_autor(cls) -> Any:
-        autor = Autor.criar_autor() # Cria um autor
-        cidade = Cidade.objects.filter(id=1).first() # Busca uma cidade com id 1
-        if not cidade: # Se não encontrar a cidade
-            cidade = Cidade.criar_cidade() # Cria uma cidade
-        return cls.objects.create(
-            nome="Leandrinho", 
-            email="email@exemplo.com",
-            telefone="1234567890",
-            cidade=cidade, # Atribui a cidade criada ao autor sendo gerado
-            cpf="12345678901",
-            data_nasc="2000-01-01"
-        )
-
 
 # Subclasse 'Editora' que herda de 'PessoaJuridica'
 class Editora(PessoaJuridica):
@@ -182,22 +155,6 @@ class Editora(PessoaJuridica):
     class Meta:
         verbose_name = "Editora"
         verbose_name_plural = "Editoras"
-
-    # Método que inicializa a classe criando uma editora com o nome 'Editora X'
-    @classmethod
-    def criar_editora(cls) -> Any:
-        cidade = Cidade.objects.filter(id=1).first()
-        if not cidade:
-            cidade = Cidade.criar_cidade()
-        return cls.objects.create(
-            nome="Editora X",
-            email="email@exemplo.com",
-            telefone="1234567890",
-            cidade=cidade,
-            cnpj="12345678901234",
-            razao_social="Editora X",
-            data_fund="2000-01-01"
-        )
 
 
 # Subclasse 'Usuario' que herda de 'PessoaFisica'
@@ -207,20 +164,6 @@ class Usuario(PessoaFisica):
     class Meta:
         verbose_name = "Usuário"
         verbose_name_plural = "Usuários"
-
-    @classmethod
-    def criar_usuario(cls) -> Any:
-        cidade = Cidade.objects.filter(id=1).first()
-        if not cidade:
-            cidade = Cidade.criar_cidade()
-        return cls.objects.create(
-            nome="Usuário X",
-            email="email@exemplo.com",
-            telefone="1234567890",
-            cidade=cidade,
-            cpf="12345678901",
-            data_nasc="2000-01-01"
-        )
 
 
 # Classe 'Livro' que representa um livro
@@ -270,26 +213,6 @@ class Livro(models.Model):
     def __str__(self):
         return self.nome
 
-    # Método que inicializa a classe criando um livro com o nome 'Livro X'
-    @classmethod
-    def criar_livro(cls) -> Any:
-        genero = Genero.objects.filter(id=1).first()
-        if not genero:
-            genero = Genero.objects.create(nome="Gênero X")
-        autor = Autor.criar_autor()
-        if not autor:
-            autor = Autor.objects.create(nome="Autor X")
-        editora = Editora.criar_editora()
-        if not editora:
-            editora = Editora.objects.create(nome="Editora X")
-        return cls.objects.create(
-            nome="Livro X",
-            genero=genero,
-            autor=autor,
-            editora=editora,
-            preco=100,
-            data_pub="2000-01-01"
-        )
 
 # Classe 'Emprestimo' que representa um empréstimo de um livro
 class Emprestimo(models.Model):
@@ -325,19 +248,4 @@ class Emprestimo(models.Model):
     def __str__(self):
         return f"{self.usuario} pegou {self.livro} emprestado em {self.data_sai} e deve devolver em {self.data_ent}"
 
-    # Método que inicializa a classe criando um empréstimo com o livro 'Livro X'
-    @classmethod
-    def criar_emprestimo(cls) -> Any:
-        usuario = Usuario.criar_usuario()
-        if not usuario:
-            usuario = Usuario.objects.create(nome="Usuário X")
-        livro = Livro.criar_livro()
-        if not livro:
-            livro = Livro.objects.create(nome="Livro X")
-        return cls.objects.create(
-            data_ent="2000-01-01",
-            data_sai="2000-01-01",
-            usuario=usuario,
-            livro=livro
-        )
     
