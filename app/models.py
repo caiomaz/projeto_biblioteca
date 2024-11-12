@@ -9,7 +9,6 @@ class UF(models.Model):
         verbose_name="Sigla", # Nome da coluna no ambiente administrativo
         unique=True, # A sigla deve ser única
         help_text="Informe a sigla da Unidade Federativa", # Texto de ajuda
-        default="--" # Valor padrão
     )
 
     class Meta:
@@ -27,7 +26,6 @@ class Cidade(models.Model):
         verbose_name="Nome da Cidade",
         unique=True,
         help_text="Informe o nome da cidade",
-        default="--"
     )
     uf = models.ForeignKey(
         UF, # Chave estrangeira para a classe UF
@@ -53,7 +51,6 @@ class Genero(models.Model):
         verbose_name="Nome do Gênero", # Nome da coluna no ambiente administrativo
         unique=True, # O nome do gênero deve ser único
         help_text="Informe o nome do gênero literário", # Texto de ajuda
-        default="--" # Valor padrão
     )
 
     class Meta:
@@ -68,19 +65,16 @@ class Genero(models.Model):
 class Pessoa(models.Model):
     nome = models.CharField(
         max_length=255, 
-        default="--",
         verbose_name="Nome",
         help_text="Informe o nome"
     )
     email = models.CharField(
         max_length=255, 
-        default="--",
         verbose_name="E-mail",
         help_text="Informe o e-mail",
     )
     telefone = models.CharField(
         max_length=20,
-        default="--",
         verbose_name="Telefone",
         help_text="Informe o telefone",
     )
@@ -104,7 +98,6 @@ class Pessoa(models.Model):
 class PessoaFisica(Pessoa):
     cpf = models.CharField(
         max_length=11, 
-        default="--",
         verbose_name="CPF",
         help_text="Informe o CPF"
     )
@@ -122,13 +115,11 @@ class PessoaFisica(Pessoa):
 class PessoaJuridica(Pessoa):
     cnpj = models.CharField(
         max_length=14, 
-        default="--",
         verbose_name="CNPJ",
         help_text="Informe o CNPJ"
     )
     razao_social = models.CharField(
         max_length=255, 
-        default="--",
         verbose_name="Razão Social",
         help_text="Informe a razão social"
     )
@@ -172,7 +163,6 @@ class Usuario(PessoaFisica):
 class Livro(models.Model):
     nome = models.CharField(
         max_length=255,
-        default="--",
         verbose_name="Nome do Livro",
         help_text="Informe o nome do livro"
     )
