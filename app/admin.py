@@ -8,12 +8,12 @@ class CidadeInline(admin.TabularInline):
     extra = 1 # Quantidade de formulários em branco
 
 
-class LivroInline(admin.TabularInline):
+class LivroInline(admin.TabularInline): # Formulário em tabela
     model = Livro
     extra = 1
 
 
-class EmprestimoInline(admin.TabularInline):
+class EmprestimoInline(admin.StackedInline): # Formulário em pilha
     model = Emprestimo
     extra = 1
 
