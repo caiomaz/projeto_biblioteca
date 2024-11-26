@@ -1,30 +1,81 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olá Lucas Caruzo!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>Data de Entrada</th>
-                <th>Data de Saída</th>
-                <th>Livro</th>
-                <th>Usuário</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for emprestimo in emprestimos %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <a class="navbar-brand" href="/">Biblioteca</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="/admin/">Administração</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1 class="mb-4">Emprestimos</h1>
+        <table class="table-bordered">
+            <thead>
                 <tr>
-                    <td>{{ emprestimo.data_ent }}</td>
-                    <td>{{ emprestimo.data_sai }}</td>
-                    <td>{{ emprestimo.livro }}</td>
-                    <td>{{ emprestimo.usuario }}</td>
+                    <th class="col">Data de Entrada</th>
+                    <th class="col">Data de Saída</th>
+                    <th class="col">Livro</th>
+                    <th class="col">Usuário</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for i in emprestimos %}
+                <tr>
+                    <td>{{ i.data_ent }}</td>
+                    <td>{{ i.data_sai }}</td>
+                    <td>{{ i.livro }}</td>
+                    <td>{{ i.usuario }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="container mt-5">
+        <table class="table-bordered">
+            <h1 class="mb-4">Livros</h1>
+            <thead>
+                <tr>
+                    <th class="col">Nome do Livro</th>
+                    <th class="col">Genero</th>
+                    <th class="col">Autor</th>
+                    <th class="col">Editora</th>
+                    <th class="col">Preço</th>
+                    <th class="col">Data de Publicação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in livros %}
+                <tr>
+                    <td>{{ i.nome }}</td>
+                    <td>{{ i.genero }}</td>
+                    <td>{{ i.autor }}</td>
+                    <td>{{ i.editora }}</td>
+                    <td>{{ i.preco }}</td>
+                    <td>{{ i.data_pub }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

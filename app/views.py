@@ -9,6 +9,7 @@ class IndexView(View):
     def get(self, request):
         context = {
             "emprestimos": Emprestimo.objects.all(), # Recuperar todos os empréstimos
+            "livros": Livro.objects.all(), # Recuperar todos os livros
         } # Dicionário de contexto
         return render(request, self.page, context) # Renderizar a página de destino com o contexto
 
